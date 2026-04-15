@@ -1,0 +1,95 @@
+from __future__ import annotations
+
+USERS = [
+    {
+        "user_id": "u001",
+        "full_name": "Aisha Rahman",
+        "email": "aisha.rahman@clouda.example",
+        "username": "sec_admin_a",
+        "password": "Password@123",
+        "department": "Security Operations",
+        "role": "Security Admin",
+        "clearance_level": 5,
+        "assigned_clouds": ["CloudA", "CloudB"],
+        "allowed_resources": ["*"],
+        "can_approve_sync": True,
+    },
+    {
+        "user_id": "u002",
+        "full_name": "Daniel Kim",
+        "email": "daniel.kim@cloudb.example",
+        "username": "cloud_admin_b",
+        "password": "Password@123",
+        "department": "Cloud Platform",
+        "role": "Cloud Administrator",
+        "clearance_level": 4,
+        "assigned_clouds": ["CloudB"],
+        "allowed_resources": ["cloudb:project-files", "cloudb:model-assets", "cloudb:sync-queue"],
+        "can_approve_sync": True,
+    },
+    {
+        "user_id": "u003",
+        "full_name": "Nora Patel",
+        "email": "nora.patel@clouda.example",
+        "username": "analyst_a",
+        "password": "Password@123",
+        "department": "SOC",
+        "role": "Cloud Analyst",
+        "clearance_level": 3,
+        "assigned_clouds": ["CloudA"],
+        "allowed_resources": ["clouda:access-logs", "clouda:http-logs", "clouda:device-logs"],
+        "can_approve_sync": False,
+    },
+    {
+        "user_id": "u004",
+        "full_name": "Jade Olsson",
+        "email": "jade.olsson@clouda.example",
+        "username": "research_user",
+        "password": "Password@123",
+        "department": "AI Research",
+        "role": "Research User",
+        "clearance_level": 3,
+        "assigned_clouds": ["CloudA", "CloudB"],
+        "allowed_resources": ["clouda:ai-training-data", "cloudb:ai-training-data", "cloudb:model-assets"],
+        "can_approve_sync": False,
+    },
+    {
+        "user_id": "u005",
+        "full_name": "Liam Castillo",
+        "email": "liam.castillo@clouda.example",
+        "username": "intern_ops",
+        "password": "Password@123",
+        "department": "Operations",
+        "role": "Intern",
+        "clearance_level": 1,
+        "assigned_clouds": ["CloudA"],
+        "allowed_resources": ["clouda:employee-records"],
+        "can_approve_sync": False,
+    },
+]
+
+RESOURCES = [
+    {"resource_id": "clouda:employee-records", "cloud": "CloudA", "name": "Employee Records", "classification": "internal", "resource_type": "dataset", "owner_department": "HR"},
+    {"resource_id": "clouda:ai-training-data", "cloud": "CloudA", "name": "AI Training Data", "classification": "confidential", "resource_type": "dataset", "owner_department": "AI Research"},
+    {"resource_id": "clouda:access-logs", "cloud": "CloudA", "name": "Access Logs", "classification": "restricted", "resource_type": "logs", "owner_department": "SOC"},
+    {"resource_id": "cloudb:model-assets", "cloud": "CloudB", "name": "Model Assets", "classification": "confidential", "resource_type": "model", "owner_department": "AI Engineering"},
+    {"resource_id": "cloudb:project-files", "cloud": "CloudB", "name": "Project Files", "classification": "internal", "resource_type": "files", "owner_department": "Engineering"},
+    {"resource_id": "cloudb:sync-queue", "cloud": "CloudB", "name": "Sync Queue", "classification": "restricted", "resource_type": "service", "owner_department": "Cloud Platform"},
+]
+
+ROLE_POLICIES = {
+    "Security Admin": {"actions": ["view", "download", "upload", "modify", "sync", "approve_sync", "train_model"]},
+    "Cloud Administrator": {"actions": ["view", "download", "upload", "modify", "sync", "approve_sync"]},
+    "Cloud Analyst": {"actions": ["view", "download", "analyze"]},
+    "Research User": {"actions": ["view", "download", "train_model", "request_sync"]},
+    "AI Engineer": {"actions": ["view", "download", "upload", "train_model", "deploy_model"]},
+    "Internal Staff": {"actions": ["view"]},
+    "External User": {"actions": ["view_public"]},
+    "Intern": {"actions": ["view"]},
+}
+
+SYNC_POLICY = {
+    "clouda:ai-training-data": ["cloudb:model-assets", "cloudb:project-files"],
+    "clouda:access-logs": ["cloudb:sync-queue"],
+    "cloudb:model-assets": ["clouda:ai-training-data"],
+}
