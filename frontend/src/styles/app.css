@@ -1,0 +1,59 @@
+:root {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: #d7e4ff;
+  background: #0b1220;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #14213d, #0b1220 55%);
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 100vh;
+}
+
+.sidebar {
+  background: rgba(11, 18, 32, 0.9);
+  border-right: 1px solid #283247;
+  padding: 24px;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  color: #9dc0ff;
+}
+
+.sidebar nav {
+  display: grid;
+  gap: 8px;
+}
+
+.sidebar a {
+  color: #d7e4ff;
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background: #1d2a45;
+}
+
+.content {
+  padding: 40px;
+}
+
+section {
+  background: rgba(17, 28, 50, 0.8);
+  border: 1px solid #283247;
+  border-radius: 14px;
+  padding: 24px;
+}
+
+h1 {
+  margin-top: 0;
+}
